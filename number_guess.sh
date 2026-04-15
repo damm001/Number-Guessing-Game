@@ -37,27 +37,3 @@ INPUT_NAME() {
   fi
 }
 
-INPUT_GUESS() {
-  USER_NAME=$1
-  CORRECT_ANSWER=$2
-  GUESS_COUNT=$3
-  USSER_GUESS=$4
-
-  if [[ -z $USSER_GUESS ]]
-  then
-    echo "Guess the secret number between 1 and 1000:"
-    read USSER_GUESS
-  else
-    #If anything other than an integer is input as a guess, it should print That is not an integer, guess again:
-    echo "That is not an integer, guess again:"
-    read USSER_GUESS
-  fi
-
-  GUESS_COUNT=$(( $GUESS_COUNT + 1 ))
-  if [[ ! $USSER_GUESS =~ ^[0-9]+$ ]]
-  then
-    INPUT_GUESS $USER_NAME $CORRECT_ANSWER $GUESS_COUNT $USSER_GUESS
-  else
-    CHECK_ANSWER $USER_NAME $CORRECT_ANSWER $GUESS_COUNT $USSER_GUESS
-  fi
-}
